@@ -10,7 +10,7 @@ var app = express();
 // Import the fs
 var fs = require('fs');
 // Import the Anagrammatix game file.
-var agx = require('./agxgame');
+var agx = require('./axgame');
 
 //creating server if not exists
 
