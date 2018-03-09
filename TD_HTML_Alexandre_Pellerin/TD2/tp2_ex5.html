@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A la recherche des crimes...</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	
+	<script type="text/javascript" src="https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2017-01&callback=maFonction"></script>
+
+	
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/overcast/jquery-ui.css">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+  </head>
+
+
+<body>	
+
+<h2> Géolocalisation de crimes... </h2>
+
+<form class="form-horizontal" role="form">
+	
+		<div class="form-group">
+			<label class="col-md-3" data-toggle="tooltip" title="Coordonnées GPS"> Lieux du crime : </label>
+	
+			<div class="col-md-6">
+				<table style="width: 100%; text-align: center">
+					<tr><td><input class="form-control" type="text" name="lat" id="lat" placeholder="Latitude" /></td><td>x</td><td><input class="form-control" type="text" name="lon" id="lon" placeholder="Longitude"  /></td></tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="form-group">
+				<label class="col-sm-3" data-toggle="tooltip" title="Détail"> Détail du crime : </label>
+			<div class="col-md-6">
+				<input class="form-control" type="text" size="60" name="address" id="detail" value="" />
+			</div>
+		</div>
+
+	<div class="form-group">
+		<div id="map-canvas" style="width: 100%; height: 500px"></div>
+	</div>
+
+</form>	
+
+</body>
+
+<script>
+
+ var map;
+
+$(document).ready(function() {
+
+//Initialisation de Google Maps
+  var mapOptions = {
+    zoom: 18,
+    center: new google.maps.LatLng(52.629729, -1.131592)
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+
+  google.maps.event.addListener(map, 'click', function(e) {
+  	getCoordinate(e.latLng,map);
+  
+   });
+
+
+function getCoordinate(position,map) {
+  
+  map.panTo(position);
+
+  getCrimes(position);
+
+}
+
+
+function getCrimes(position){
+map.addListener('click', function(e) {
+console.log(e.latLng.toString());
+});
+}
+
+});
+
+</script>
+
+</html>
+

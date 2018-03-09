@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TP2: Exercice 2</title>
+    <meta name="read-only" content="true">
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="author" content="none">
+    <link rel=stylesheet href="styles.css">
+    <script type="text/javascript" src="jquery/js/jquery-1.9.0.min.js"></script>
+    
+    <script>
+    
+
+	
+    var colorCardinal = "rgb(153, 51, 51)"
+
+    $(document).ready(function() {
+	
+	$(".box").addClass("outlined");
+	
+      $("#button_toggle_colors").click(function() {
+		$(".box").toggleClass("cardinal");
+		
+		/*$(".box").each(function() {
+		if ($( this ).css("background-color")== colorCardinal)
+		$( this ).css("background-color","white");
+		else $( this ).css("background-color",colorCardinal);
+		})*/
+        
+      });
+
+      $("#button_toggle_roundedges").click(function() {
+        $(".box").toggleClass("round-edge");
+        
+      });
+
+      $("#button_add_box").click(function() {
+        $("#boxes").append("<div class='box'> </div>");
+		$(".box").addClass("outlined");
+      });
+
+      
+    });
+    </script>
+  </head>
+  <body>
+    
+    <div id="container">
+      
+      <div id="boxes">  
+      <!-- Mettre les boîtes dans une classe  -->
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+        <div id="box3" class="box"></div>
+      </div>
+     
+    <div id="toggles">
+      <h2>Modifications</h2>
+      <button id="button_toggle_colors">Activer/Désactiver la Couleur</button>
+      <button id="button_toggle_roundedges">Activer/Désactiver les bords arrondis</button>
+      <button id="button_add_box">Ajouter une nouvelle boîte</button>
+    </div>
+
+    <div id="info">
+      <h2>Descriptions:</h2>
+      <ul>
+        <li><b>Activer/Désactiver la couleur</b>: Activer/Désactive la couleur pour chaque boîte à l'aide des classes CSS.</li>
+        <li><b>Activer/Désactiver les bords arrondis</b>: Activer/Désactiver les bords arrondis de chacune des boîtes à l'aide des attributs CSS.</li>
+        <li><b>Ajouter une nouvelle boîte</b>: Ajouter une nouvelle boîte au conteneur.</li>
+      </ul>
+    </div>
+    </div>
+
+
+  </body>
+</html>

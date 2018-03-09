@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+      <meta charset="utf-8">
+      <title>TD : Initiation à Node.JS</title>
+  </head>
+
+  <body>
+
+    <div id="users">
+      <ul id="listusers"> </ul>
+    </div>
+
+    <div id="messages">
+      <div class="message" id="msgtpl" style='display:none;'>
+        <div class="info">
+          <p><strong>{{user.username}}</strong></p>
+          <p>{{message}}</p>
+          <span class="date">{{h}}:{{m}}</span>
+        </div>
+      </div>
+  </div>
+
+    <div id="login">
+      <form action="" id="loginform">
+        <h1>Bienvenue</h1>
+        <p>Service de chat - Entrez votre pseudo et votre email</p>
+        <input type="text" name="login" id="username" placeholder="Nom d'utilisateur">
+        <input type="mail" name="mail" id="mail" placeholder="E-mail">
+        <input type="submit" value="Envoyer">
+      </form>
+    </div>
+
+    <form action="" id="form">
+      <input type="text" id="message" class="text" />
+      <input type="submit" id="send" value="Envoyer mon message" class="submit" />
+    </form>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="node_modules/mustache/mustache.js"></script>
+    <script src="client.js"></script>
+
+  </body>
+</html>

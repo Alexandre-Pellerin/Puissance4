@@ -1,0 +1,12 @@
+{
+    "name": "ApplicationdeChat",
+    "version": "0.0.1",
+    "description": "Application WEB de chat en temps réel",
+    "dependencies": {
+        "mustache": "^2.3.0",
+        "socket.io": "latest",
+        "swig": "^1.4.2",
+        "url": "^0.11.0"
+    },
+    "author": "ISTIA - AGI"
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Liste de Tâches</title>
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen"/>
+</head>
+<body>
+
+    <h1>My ToDo list</h1> <!--titre de niveau 1-->
+	
+	<div id="container">
+		<!-- the to-do list -->
+		<div class="column">
+			<ul id="todo-list">
+			    <!--<li>Tâche #1<a href="#" class="todo-list-remove" draggable="true" ></li>
+			    <li>Tâche #2<a href="#" class="todo-list-remove" draggable="true" ></li>-->
+			</ul>
+		</div>
+
+		<!-- form pour ajouter une tâche à la liste -->
+		<div class="column">
+			<form id="todo-form">
+			    <label>Ajouter une tâche</label><br/>
+			    <input name="todo-form-add" id="todo-form-add" type="text" placeholder="Nouvelle tâche">
+			    <input type='button' onclick='addTache()' value='Ajouter'/> 
+			</form>
+			
+			<form id="todo-save">
+			<input type='button' onclick='saveTache()' value='Sauvegarder'/>
+			</form>
+			
+			<img src="Corbeille.jpg" alt="Corbeille" style="width:100px;height:80px;" ondragover="dragOver(event)" ondrop="dragDrop(event)">
+		</div>
+				
+	</div>
+	
+</body>
+</html>
+
+
+<script type="text/javascript">
+var ul =document.getElementById("todo-list")
+if(localStorage.length!=0)
+{  
+	while (ul.firstChild) {
+  		ul.removeChild(ul.firstChild);
+	}
+	
+	var i;
+	for (i = 0; i < localStorage.length; i++) {
+	  var li = document.createElement("li");
+	  var t = document.createTextNode(localStorage.getItem(i));
+	  li.draggable='true';
+  
+	li.ondragstart=function(){
+	event.dataTransfer.effectAllowed = 'move';
+	event.dataTransfer.setData("Text", this.textContent);
+	}
+
+	  li.appendChild(t);
+	  ul.appendChild(li);	  
+	}
+}
+
+var myNodelist = document.getElementsByTagName("li");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "remove";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+var remove = document.getElementsByClassName("remove");
+var i;
+for (i = 0; i < remove.length; i++) {
+  remove[i].onclick = function() {
+    var div = this.parentElement;
+	div.remove();
+  }
+}
+	
+
+function addTache()
+{
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("todo-form-add").value;
+  var ul =document.getElementById("todo-list")
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("Vous devez écrire quelques chose!");
+  } else {
+    li.draggable='true';
+	
+	li.ondragstart=function(){
+	event.dataTransfer.effectAllowed = 'move';
+	event.dataTransfer.setData("Text", this.textContent);
+	}
+	
+    ul.appendChild(li);
+  }
+  document.getElementById("todo-form-add").value = "";
+  
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "remove";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < remove.length; i++) {
+    remove[i].onclick = function() {
+      var div = this.parentElement;
+	  div.remove();
+    }
+  }
+}
+
+function saveTache()
+{
+	localStorage.clear();		
+	var ul = document.getElementById('todo-list');
+	var myNodelist = document.getElementsByTagName("li");
+	var i;
+	var txt;
+
+	for (i = 0; i < myNodelist.length; i++) {	
+	  txt=myNodelist[i].textContent.slice(0, -1);	
+	  localStorage.setItem(i,txt);
+	}	
+}
+
+function dragOver(event){
+	event.preventDefault();
+	return false;
+}
+
+function dragDrop(event){	
+	var ul = document.getElementById('todo-list');
+	var myNodelist = document.getElementsByTagName("li");
+	var i;
+
+	for (i = 0; i < myNodelist.length; i++) {	
+	  txt=myNodelist[i].textContent;	
+	  if(txt==event.dataTransfer.getData('Text'))
+	  {
+		myNodelist[i].remove();
+	  }
+	}
+	return false;
+}
+
+</script>

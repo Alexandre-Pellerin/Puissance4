@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TP2: Exercice 4</title>
+    <meta name="read-only" content="true">
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="author" content="none">
+    <script type="text/javascript" src="jquery/js/jquery-1.9.0.min.js"></script>
+    <style>
+
+      #container {
+        display: block;
+      }
+
+
+      #draw_buttons {
+        float: left;
+        width: 100%;
+        margin-top: 10px;
+      }
+      
+
+      
+    </style>
+    
+    <script>
+    $(document).ready(function() {
+
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+
+	
+	
+      $("#button_draw_triangle").click(function() {
+	ctx.beginPath();
+	ctx.moveTo(60, 240);
+	ctx.lineTo(240, 240);
+	ctx.lineTo(150, 60);
+	ctx.lineTo(60, 240)
+	ctx.strokeStyle = "black";
+	ctx.lineWidth = 3;
+	ctx.fillStyle = "red";
+	ctx.fill();
+	ctx.stroke();
+        
+      });
+
+      $("#button_draw_rotated_triangle").click(function() {
+
+	ctx.translate(c.width / 2, c.height / 2);
+	ctx.rotate((Math.PI / 180) * 45);
+	ctx.translate(-c.width / 2, -c.height / 2);
+	ctx.beginPath();
+	ctx.moveTo(60, 240);
+	ctx.lineTo(240, 240);
+	ctx.lineTo(150, 60);
+	ctx.lineTo(60, 240)
+	ctx.strokeStyle = "black";
+	ctx.lineWidth = 3;
+	ctx.fillStyle = "red";
+	ctx.fill();
+	ctx.stroke();
+	ctx.translate(c.width / 2,c.height / 2);
+	ctx.rotate(-(Math.PI / 180) * 45);
+	ctx.translate(-c.width / 2,-c.height / 2);
+      });
+
+      $("#button_clear_canvas").click(function() {
+	ctx.clearRect(0, 0, c.width, c.height);
+
+      });
+      
+    });
+    </script>
+  </head>
+  <body>
+    <h2>Manipulation de Canvas</h2>
+    <canvas id="myCanvas" width="300" height="300" style="border:1px solid #000000;"> </canvas>
+    
+
+    <div id="draw_buttons">
+      <button id="button_draw_triangle">Dessiner un Triangle</button>
+      <button id="button_draw_rotated_triangle">Dessiner un triangle en rotation</button>
+      <button id="button_clear_canvas">Effacer le Canvas</button>
+    </div>
+
+  </body>
+</html>
