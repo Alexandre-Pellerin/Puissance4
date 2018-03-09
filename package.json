@@ -1,27 +1,26 @@
 {
-  "name": "Anagrammatix",
-  "description": "Anagram Multiplayer Game",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "express": "3.x",
-    "socket.io": "0.9",
-    "sqlite3": "^3.1.4"
-  },
+  "name": "puissance4",
+  "version": "1.0.0",
+  "description": "\"puissance 4 multijoueur\"",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "node index.js",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "LElite",
+  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ericterpstra/anagrammatix.git"
+    "url": "github.com/Alexandre-Pellerin/Puissance4"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ericterpstra/anagrammatix/issues"
-  },
-  "homepage": "https://github.com/ericterpstra/anagrammatix"
+  "keywords": [
+    "puissance4",
+    "multijoueur"
+  ],
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "socket.io": "^2.0.4",
+    "string": "^3.3.3"
+  }
 }
